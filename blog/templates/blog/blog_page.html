@@ -1,17 +1,48 @@
 {% extends "base.html" %}
-
 {% load wagtailcore_tags %}
-
+{% load wagtailcore_tags wagtailimages_tags %}
 {% block body_class %}template-blogpage{% endblock %}
-
 {% block content %}
-<h1>{{ page.title }}</h1>
-<p class="meta">{{ page.date }}</p>
-
-<div class="intro">{{ page.intro }}</div>
-
-{{ page.body|richtext }}
-
-<p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
-
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+        <h1 class="mt-5 my-3 fw-bold">{{ page.title }}</h1>
+        <p class="meta mb-5 fst-italic">{{ page.date }}</p>
+        {% with authors=page.authors.all %}
+            {% if authors %}
+                <h3>Posted by:</h3>
+                <ul>
+                    {% for author in authors %}
+                        <li style="display: inline">
+                            {% image author.author_image fill-40x60 style="vertical-align: middle" %}
+                            {{ author.name }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="intro">{{ page.intro }}</div>
+        {{ page.body|richtext }}
+        <div class="d-flex gap-3">
+            {% for item in page.gallery_images.all %}
+                <div style="my-3">
+                    {% image item.image fill-320x240 %}
+                    <p>{{ item.caption }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <p>
+            <a href="{{ page.get_parent.url }}">Return to blog</a>
+        </p>
+        {% with tags=page.tags.all %}
+            {% if tags %}
+                <div class="tags mt-5 my-3">
+                    <h3>Tags</h3>
+                    {% for tag in tags %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                            <button type="button" class="btn btn-primary">{{ tag }}</button>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
 {% endblock %}

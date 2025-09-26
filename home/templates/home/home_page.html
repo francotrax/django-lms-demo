@@ -1,13 +1,17 @@
-{% extends "base.html" %} {% load static %}
-
+{% extends "base.html" %}
+{% load static %}
 <!-- load wagtailcore_tags by adding this: -->
-{% load wagtailcore_tags %} 
-
-{% block body_class %}template-homepage{% endblock%}
-
-{% block extra_css %} 
-{% endblock extra_css %} 
-
-{% block content %} 
-    {{page.body|richtext }} 
+{% load wagtailcore_tags %}
+{% block body_class %}template-homepage{% endblock %}
+{% block extra_css %}
+{% endblock extra_css %}
+{% block content %}
+    {{ page.body|richtext }}
+    <div>
+        {% with blog_index=BlogIndexPage.objects.first %}
+            <a href="/blog">
+                <button type="button" class="btn btn-primary">Blog</button>
+            </a>
+        {% endwith %}
+    </div>
 {% endblock content %}

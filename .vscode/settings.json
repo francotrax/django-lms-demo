@@ -25,7 +25,7 @@
   },
   // Language options
   "[django-html]": {
-    "editor.defaultFormatter": "HookyQR.beautify",
+    "editor.defaultFormatter": "monosans.djlint",
     "editor.formatOnSave": true,
     "editor.quickSuggestions": {
       "other": true,
@@ -33,6 +33,7 @@
       "strings": true
     }
   },
+  "djlint.ignore": ["T003", "H021"],
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true
