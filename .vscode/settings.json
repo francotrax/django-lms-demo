@@ -1,0 +1,40 @@
+{
+  "python.analysis.typeCheckingMode": "off",
+  // VSCode Editor options
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+  // Emmet options
+  "emmet.includeLanguages": {
+    "django-html": "html",
+    "jinja-html": "html"
+  },
+  // Prettier options
+  "prettier.printWidth": 150,
+  "prettier.quoteProps": "preserve",
+  // Beautify options
+  "beautify.language": {
+    "html": ["htm", "html", "django-html"]
+  },
+  // Language options
+  "[django-html]": {
+    "editor.defaultFormatter": "HookyQR.beautify",
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  }
+}
